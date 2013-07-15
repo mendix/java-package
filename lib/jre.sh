@@ -28,6 +28,15 @@ Description: $j2se_title
 EOF
 }
 
+function install_security_policy_jre() {
+    local jce_zip="$1"
+    local dest="$2/lib/security"
+    echo "Updating to unlimited jurisdiction security policy using $jce_zip"
+    for f in {US_export,local}_policy.jar; do
+        unzip -p "$jce_zip" "jce/$f" > "$dest/$f"
+    done
+}
+
 # build debian package
 j2re_run() {
     echo
@@ -38,6 +47,9 @@ j2re_run() {
     local target="$package_dir/$j2se_name"
     install -d -m 755 "$( dirname "$target" )"
     extract_bin "$archive_path" "$j2se_expected_min_size" "$target"
+    if [[ -n "$jce_policy_zipfile" ]]; then
+        install_security_policy_jre "$jce_policy_zipfile" "$target"
+    fi
     rm -rf "$target/.systemPrefs"
     echo "9" > "$debian_dir/compat"
     j2se_readme > "$debian_dir/README.Debian"
