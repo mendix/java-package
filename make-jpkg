@@ -82,6 +82,7 @@ The following options are recognized:
   --email EMAIL      email address used in the maintainer field of the package
   --changes          create a .changes file
   --revision         add debian revision
+  --jce-policy ZIPFILE   replace the jce security policy files
 
   --help             display this help and exit
   --version          output version information and exit
@@ -121,6 +122,14 @@ while [[ $# -gt 0 && "x$1" == x--* ]]; do
     [ $# -le 1 ] && missing_argument "$1"
     shift
     maintainer_email="$1"
+    elif [[ "x$1" == x--jce-policy ]]; then
+    [ $# -le 1 ] && missing_argument "$1"
+    shift
+    jce_policy_zipfile="$1"
+    # make this into an absolute pathname.
+    if ! echo $jce_policy_zipfile | egrep "^/" > /dev/null; then
+        jce_policy_zipfile="$working_dir/$jce_policy_zipfile";
+    fi
     elif [[ "x$1" == x--revision ]]; then
     [ $# -le 1 ] && missing_argument "$1"
     shift
