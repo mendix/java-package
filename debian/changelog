@@ -1,3 +1,10 @@
+java-package (0.57+jce) experimental; urgency=medium
+
+  * Non-maintainer upload.
+  * Added JCE support (Close: #347576)
+
+ -- Adnan Hodzic <adnan.hodzic@mendix.com>  Thu, 22 Jan 2015 17:33:13 +0100
+
 java-package (0.57) experimental; urgency=medium
 
   * Team upload.
