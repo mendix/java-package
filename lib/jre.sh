@@ -1,5 +1,6 @@
 
 j2re_control() {
+    build_depends="libasound2, libgl1-mesa-glx, libgtk2.0-0, libxslt1.1, libxtst6, libxxf86vm1"
     j2se_control
     cat << EOF
 Package: $j2se_package
