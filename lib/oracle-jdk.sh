@@ -38,7 +38,7 @@ oracle_j2sdk_detect() {
 
   if [[ $j2se_release > 0 ]]
   then
-    j2se_priority=$((310 + $j2se_release))
+    j2se_priority=$(($j2se_release * 1000 + $j2se_update))
     j2se_expected_min_size=130 #Mb
 
     # check if the architecture matches
