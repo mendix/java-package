@@ -96,6 +96,10 @@ install_alternatives $jvm_base$j2se_name/bin $oracle_jre_bin_jre
 install_no_man_alternatives $jvm_base$j2se_name/bin $oracle_no_man_jre_bin_jre
 install_no_man_alternatives $jvm_base$j2se_name/lib $oracle_jre_lib_hl
 
+if [[ -f "$jvm_base$j2se_name/bin/java" ]]; then
+    update-alternatives --install "/usr/bin/java$j2se_release" "java$j2se_release" "$jvm_base$j2se_name/bin/java" $j2se_priority
+fi
+
 plugin_dir="$jvm_base$j2se_name/lib/$DEB_BUILD_ARCH"
 for b in $browser_plugin_dirs;do
     install_browser_plugin "/usr/lib/\$b/plugins" "libjavaplugin.so" "\$b-javaplugin.so" "\$plugin_dir/libnpjp2.so"
@@ -113,6 +117,8 @@ remove_alternatives $jvm_base$j2se_name/bin $oracle_jre_bin_hl
 remove_alternatives $jvm_base$j2se_name/bin $oracle_jre_bin_jre
 remove_alternatives $jvm_base$j2se_name/bin $oracle_no_man_jre_bin_jre
 remove_alternatives $jvm_base$j2se_name/lib $oracle_jre_lib_hl
+
+update-alternatives --remove "java$j2se_release" "$jvm_base$j2se_name/bin/java"
 
 plugin_dir="$jvm_base$j2se_name/lib/$DEB_BUILD_ARCH"
 for b in $browser_plugin_dirs;do
