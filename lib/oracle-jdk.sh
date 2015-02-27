@@ -126,6 +126,10 @@ fi
 install_no_man_alternatives $jvm_base$j2se_name/jre/lib $oracle_jre_lib_hl
 install_alternatives $jvm_base$j2se_name/bin $oracle_bin_jdk
 
+if [[ -f "$jvm_base$j2se_name/bin/java" ]]; then
+    update-alternatives --install "/usr/bin/java$j2se_release" "java$j2se_release" "$jvm_base$j2se_name/bin/java" $j2se_priority
+fi
+
 # No plugin for ARM architecture yet
 if [ "${DEB_BUILD_ARCH:0:3}" != "arm" ]; then
 plugin_dir="$jvm_base$j2se_name/jre/lib/$DEB_BUILD_ARCH"
@@ -149,6 +153,8 @@ if [ -n "$oracle_no_man_jre_bin_jre" ]; then
 fi
 remove_alternatives $jvm_base$j2se_name/jre/lib $oracle_jre_lib_hl
 remove_alternatives $jvm_base$j2se_name/bin $oracle_bin_jdk
+
+update-alternatives --remove "java$j2se_release" "$jvm_base$j2se_name/bin/java"
 
 # No plugin for ARM architecture yet
 if [ "${DEB_BUILD_ARCH:0:3}" != "arm" ]; then
