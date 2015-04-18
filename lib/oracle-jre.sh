@@ -106,6 +106,10 @@ plugin_dir="$jvm_base$j2se_name/lib/$DEB_BUILD_ARCH"
 for b in $browser_plugin_dirs;do
     install_browser_plugin "/usr/lib/\$b/plugins" "libjavaplugin.so" "\$b-javaplugin.so" "\$plugin_dir/libnpjp2.so"
 done
+
+if [ -d "/etc/oracle-java/postinst.d" ]; then
+    run-parts --report --exit-on-error --arg=$j2se_vendor-java${j2se_release}u$j2se_update-jre /etc/oracle-java/postinst.d
+fi
 EOF
 }
 
