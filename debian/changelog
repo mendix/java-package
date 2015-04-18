@@ -1,3 +1,15 @@
+java-package (0.58+mendix0) unstable; urgency=low
+
+  * lib/jre.sh: create build depends for JRE
+  * add support for Java Cryptography Extension (JCE) (Close: #347576)
+  * debian: add gbp.conf
+  * lib/{jre,jdk}.sh: add $j2se_update to package name
+  * lib/oracle-{jre,jdk}.sh: change j2se_priority to (j2se_release * 1000 + j2se_update)
+  * lib/oracle-{jre,jdk}.sh: add support for /usr/bin/javaX
+  * lib/oracle-jre.sh: run scripts in /etc/oracle-java/postinst.d in postinst of jre package
+
+ -- Pim van den Berg <pim.van.den.berg@mendix.com>  Sat, 18 Apr 2015 16:21:42 +0200
+
 java-package (0.58) experimental; urgency=medium
 
   [ Francesc Zacarias ]
