@@ -1,3 +1,9 @@
+java-package (0.58+mendix1) unstable; urgency=medium
+
+  * lib/oracle-jre.sh: don't pass my package name to run-parts /etc/oracle-java/postinst.d in postinst
+
+ -- Pim van den Berg <pim.van.den.berg@mendix.com>  Tue, 21 Apr 2015 19:24:54 +0200
+
 java-package (0.58+mendix0) unstable; urgency=low
 
   * lib/jre.sh: create build depends for JRE
