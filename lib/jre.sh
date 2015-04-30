@@ -13,8 +13,8 @@ j2re_control() {
     cat << EOF
 Package: $j2se_package
 Architecture: any
-Depends: \${misc:Depends}, \${shlibs:Depends}, $depends
-Recommends: netbase
+Depends: \${misc:Depends}, $depends
+Recommends: netbase, \${shlibs:Depends}
 Provides: java-virtual-machine, java-runtime, java2-runtime, $provides_runtime java-runtime-headless, java2-runtime-headless, $provides_headless java-browser-plugin
 Description: $j2se_title
  The Java(TM) SE Runtime Environment contains the Java virtual machine,

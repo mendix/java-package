@@ -3,7 +3,6 @@ j2sdk_control() {
     build_depends="libasound2, libgl1-mesa-glx, libgtk2.0-0, libxslt1.1, libxtst6, libxxf86vm1"
     j2se_control
     java_browser_plugin="java-browser-plugin, "
-    depends="\${shlibs:Depends}"
     if [ "${DEB_BUILD_ARCH:0:3}" = "arm" -a "${j2se_arch}" != "arm-vfp-hflt" ]; then
         # ARM is only softfloat ATM so if building on armhf
         # force the dependencies to pickup cross platform fu
@@ -26,7 +25,7 @@ j2sdk_control() {
 Package: $j2se_package
 Architecture: any
 Depends: \${misc:Depends}, $depends
-Recommends: netbase
+Recommends: netbase, \${shlibs:Depends}
 Provides: java-virtual-machine, java-runtime, java2-runtime, $provides_runtime $java_browser_plugin java-compiler, java2-compiler, java-runtime-headless, java2-runtime-headless, $provides_headless java-sdk, java2-sdk, $provides_sdk
 Description: $j2se_title
  The Java(TM) SE JDK is a development environment for building
