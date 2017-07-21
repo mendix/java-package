@@ -1,3 +1,16 @@
+java-package (0.62+mendix.0) stretch; urgency=medium
+
+  * debian: add gbp.conf
+  * lib/oracle-{jre,jdk}.sh: add $j2se_update to package name
+  * lib/oracle-{jre,jdk}.sh: change j2se_priority to (j2se_release * 1000 + j2se_update)
+  * lib/oracle-{jre,jdk}.sh: add support for /usr/bin/javaX
+  * lib/oracle-jre.sh: run scripts in /etc/oracle-java/postinst.d in postinst of jre package
+  * lib/oracle-jre.sh: don't pass my package name to run-parts /etc/oracle-java/postinst.d in postinst
+  * lib/{jre,jdk}.sh: move ${shlibs:Depends} from Depends to Recommends
+  * https://bugs.debian.org/843172
+
+ -- Pim van den Berg <pim.van.den.berg@mendix.com>  Fri, 21 Jul 2017 15:45:27 +0200
+
 java-package (0.62) unstable; urgency=medium
 
   * Team upload.
